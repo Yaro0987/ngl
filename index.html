@@ -304,7 +304,7 @@
             <div class="input-group">
                 <label>
                     <span>Messages to send</span>
-                    <span class="badge" id="poolCount">Loading pool...</span>
+                    <span class="badge" id="poolCount">~25,000+</span>
                 </label>
                 <input type="number" id="count" min="1" placeholder="Loading..." required disabled>
             </div>
@@ -346,25 +346,15 @@
         // ─── CONFIG ────────────────────────────────────────────
         const API_URL = 'https://ngl-pranker.free.nf/api.php';
 
-        let totalPool = 0;
+        let totalPool = 25000;
         let cancelled = false;
         let sendingActive = false;
+        let poolConfirmed = false;
 
-        (async function init() {
-            try {
-                const r = await fetch(API_URL + '?action=count');
-                const d = await r.json();
-                totalPool = d.total;
-                document.getElementById('poolCount').textContent = 'Max: ' + totalPool.toLocaleString();
-                document.getElementById('count').max = totalPool;
-                document.getElementById('count').placeholder = '1 - ' + totalPool.toLocaleString();
-                document.getElementById('count').disabled = false;
-            } catch (e) {
-                document.getElementById('poolCount').textContent = 'Max: ???';
-                document.getElementById('count').placeholder = 'Enter count';
-                document.getElementById('count').disabled = false;
-            }
-        })();
+        document.getElementById('poolCount').textContent = '~25,000+';
+        document.getElementById('count').max = totalPool;
+        document.getElementById('count').placeholder = '1 - ' + totalPool.toLocaleString();
+        document.getElementById('count').disabled = false;
 
         document.getElementById('cancelBtn').addEventListener('click', () => {
             cancelled = true;
@@ -380,7 +370,6 @@
             const count = parseInt(document.getElementById('count').value);
 
             if (!username || !count) return alert('Fill all fields');
-            if (count > totalPool) return alert('Max ' + totalPool.toLocaleString() + ' messages available');
             if (count < 1) return;
 
             cancelled = false;
@@ -421,6 +410,14 @@
                     const data = await resp.json();
 
                     if (data.success) ok++; else fail++;
+
+                    // Grab real pool count from first response
+                    if (!poolConfirmed && data.pool) {
+                        totalPool = data.pool;
+                        poolConfirmed = true;
+                        document.getElementById('poolCount').textContent = 'Max: ' + totalPool.toLocaleString();
+                        document.getElementById('count').max = totalPool;
+                    }
 
                     const div = document.createElement('div');
                     div.className = 'log-entry';
