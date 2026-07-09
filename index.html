@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta -->
+    <title>NGL Spammer Pro - Auto Send Anonymous Messages</title>
+    <meta name="title" content="NGL Spammer Pro - Auto Send Anonymous Messages">
+    <meta name="description" content="Send unlimited anonymous messages to any NGL username automatically. 20,000+ unique messages across 12 categories. Real-time results with beautiful UI.">
+    <meta name="keywords" content="NGL spammer, NGL sender, anonymous messages, NGL auto sender, NGL pranker, NGL link spam, message bomber">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NGL Spammer Pro">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ngl-pranker.netlify.app/">
+    <meta property="og:title" content="NGL Spammer Pro - Auto Send Anonymous Messages">
+    <meta property="og:description" content="Send unlimited anonymous messages to any NGL username automatically. 20,000+ unique messages across 12 categories. Real-time results.">
+    <meta property="og:image" content="https://ngl-pranker.free.nf/logo.avif">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="NGL Spammer Pro">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NGL Spammer Pro - Auto Send Anonymous Messages">
+    <meta name="twitter:description" content="Send unlimited anonymous messages to any NGL username. 20,000+ unique messages. Real-time results.">
+    <meta name="twitter:image" content="https://ngl-pranker.free.nf/logo.avif">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ngl-pranker.netlify.app/">
+
+    <!-- Favicon (hosted on InfinityFree since it has the file) -->
+    <link rel="icon" type="image/avif" sizes="32x32" href="https://ngl-pranker.free.nf/logo.avif">
+    <link rel="icon" type="image/avif" sizes="192x192" href="https://ngl-pranker.free.nf/logo.avif">
+    <link rel="apple-touch-icon" href="https://ngl-pranker.free.nf/logo.avif">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            background: #0a0a0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .bg-glow {
+            position: fixed;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-glow:nth-child(1) { background: #f093fb; top: -200px; left: -200px; }
+        .bg-glow:nth-child(2) { background: #f5576c; bottom: -200px; right: -200px; }
+        .bg-glow:nth-child(3) { background: #4facfe; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 800px; }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 580px;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 32px;
+            padding: 44px 40px 40px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .header .icon {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 32px rgba(245,87,108,0.3);
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        .header h1 span { background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p {
+            color: rgba(255,255,255,0.35);
+            font-size: 13px;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .input-group label .badge {
+            background: rgba(255,255,255,0.06);
+            padding: 3px 10px;
+            border-radius: 99px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            border-color: rgba(245,87,108,0.4);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 0 4px rgba(245,87,108,0.06);
+        }
+        .input-group input::placeholder { color: rgba(255,255,255,0.15); }
+        .input-group input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .btn-row .btn { flex: 1; }
+        .btn-row .btn-cancel {
+            flex: 0 0 auto;
+            padding: 16px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            background: transparent;
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+        .btn-row .btn-cancel:hover { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.3); color: #f87171; }
+        .btn-row .btn-cancel.visible { display: block; }
+
+        .btn {
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,87,108,0.35); }
+        .btn:active:not(:disabled) { transform: translateY(0); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn .btn-content { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn .spinner {
+            display: none; width: 18px; height: 18px;
+            border: 2.5px solid rgba(255,255,255,0.25);
+            border-top-color: #fff; border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        .btn.loading .btn-text { display: none; }
+        .btn.loading .spinner { display: block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .progress-wrap {
+            margin-top: 24px;
+            display: none;
+        }
+        .progress-wrap.visible { display: block; }
+        .progress-stats {
+            display: flex; justify-content: space-between;
+            color: rgba(255,255,255,0.4); font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .progress-stats .right { display: flex; gap: 16px; align-items: center; }
+        .progress-stats .ok { color: #4ade80; }
+        .progress-stats .fail { color: #f87171; }
+        .progress-bar {
+            width: 100%; height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 99px; overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            border-radius: 99px;
+            transition: width 0.3s ease;
+        }
+
+        .log-wrap {
+            margin-top: 16px;
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.35);
+            padding: 8px;
+        }
+        .log-wrap.visible { display: block; }
+        .log-wrap::-webkit-scrollbar { width: 3px; }
+        .log-wrap::-webkit-scrollbar-track { background: transparent; }
+        .log-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+        .log-entry {
+            display: flex; align-items: flex-start; gap: 8px;
+            padding: 6px 10px; border-radius: 10px;
+            font-size: 12px; color: rgba(255,255,255,0.7);
+            animation: slideIn 0.2s ease;
+            line-height: 1.5;
+        }
+        .log-entry .badge {
+            flex-shrink: 0; padding: 2px 8px; border-radius: 6px;
+            font-size: 10px; font-weight: 700;
+        }
+        .log-entry .badge.ok { background: rgba(74,222,128,0.12); color: #4ade80; }
+        .log-entry .badge.fail { background: rgba(248,113,113,0.12); color: #f87171; }
+        .log-entry .msg { word-break: break-word; flex: 1; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.12);
+            font-size: 11px;
+        }
+        .footer span { color: rgba(245,87,108,0.3); }
+
+        @media (max-width: 480px) {
+            .card { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-glow"></div>
+
+    <div class="card">
+        <div class="header">
+            <div class="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+            </div>
+            <h1>NGL <span>Spammer Pro</span></h1>
+            <p>Auto-send anonymous messages with real-time results</p>
+        </div>
+
+        <form id="senderForm">
+            <div class="input-group">
+                <label>
+                    <span>Username</span>
+                    <span class="badge">ngl.link/username</span>
+                </label>
+                <input type="text" id="username" value="yaro97864" placeholder="Enter target username" required>
+            </div>
+
+            <div class="input-group">
+                <label>
+                    <span>Messages to send</span>
+                    <span class="badge" id="poolCount">Loading pool...</span>
+                </label>
+                <input type="number" id="count" min="1" placeholder="Loading..." required disabled>
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" class="btn" id="sendBtn">
+                    <span class="btn-content">
+                        <span class="btn-text">Send Messages</span>
+                        <div class="spinner"></div>
+                    </span>
+                </button>
+                <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+            </div>
+        </form>
+
+        <div class="progress-wrap" id="progressWrap">
+            <div class="progress-stats">
+                <span id="progressText">0 / 0</span>
+                <div class="right">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="ok" id="okCount">0</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;margin-left:4px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    <span class="fail" id="failCount">0</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="log-wrap" id="logWrap"></div>
+
+        <div class="footer">
+            Powered by <span>PHP + bad intentions</span>
+        </div>
+    </div>
+
+    <script>
+        // ─── CONFIG ────────────────────────────────────────────
+        const API_URL = 'https://ngl-pranker.free.nf/api.php';
+
+        let totalPool = 0;
+        let cancelled = false;
+        let sendingActive = false;
+
+        (async function init() {
+            try {
+                const r = await fetch(API_URL + '?action=count');
+                const d = await r.json();
+                totalPool = d.total;
+                document.getElementById('poolCount').textContent = 'Max: ' + totalPool.toLocaleString();
+                document.getElementById('count').max = totalPool;
+                document.getElementById('count').placeholder = '1 - ' + totalPool.toLocaleString();
+                document.getElementById('count').disabled = false;
+            } catch (e) {
+                document.getElementById('poolCount').textContent = 'Max: ???';
+                document.getElementById('count').placeholder = 'Enter count';
+                document.getElementById('count').disabled = false;
+            }
+        })();
+
+        document.getElementById('cancelBtn').addEventListener('click', () => {
+            cancelled = true;
+            document.getElementById('cancelBtn').classList.remove('visible');
+        });
+
+        document.getElementById('senderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (sendingActive) return;
+
+            const btn = document.getElementById('sendBtn');
+            const username = document.getElementById('username').value.trim();
+            const count = parseInt(document.getElementById('count').value);
+
+            if (!username || !count) return alert('Fill all fields');
+            if (count > totalPool) return alert('Max ' + totalPool.toLocaleString() + ' messages available');
+            if (count < 1) return;
+
+            cancelled = false;
+            sendingActive = true;
+            btn.disabled = true;
+            btn.classList.add('loading');
+            document.getElementById('cancelBtn').classList.add('visible');
+            document.getElementById('username').disabled = true;
+            document.getElementById('count').disabled = true;
+
+            const pw = document.getElementById('progressWrap');
+            const lw = document.getElementById('logWrap');
+            pw.classList.add('visible');
+            lw.classList.add('visible');
+            lw.innerHTML = '';
+            document.getElementById('progressText').textContent = '0 / ' + count;
+            document.getElementById('okCount').textContent = '0';
+            document.getElementById('failCount').textContent = '0';
+            document.getElementById('progressFill').style.width = '0%';
+
+            let ok = 0, fail = 0;
+
+            for (let i = 1; i <= count; i++) {
+                if (cancelled) {
+                    const cancelEntry = document.createElement('div');
+                    cancelEntry.className = 'log-entry';
+                    cancelEntry.innerHTML = '<span class="badge" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4)">X</span><span class="msg">Cancelled by user</span>';
+                    lw.appendChild(cancelEntry);
+                    break;
+                }
+
+                try {
+                    const resp = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username })
+                    });
+                    const data = await resp.json();
+
+                    if (data.success) ok++; else fail++;
+
+                    const div = document.createElement('div');
+                    div.className = 'log-entry';
+                    const badge = data.success
+                        ? '<span class="badge ok">OK</span>'
+                        : '<span class="badge fail">FAIL</span>';
+                    const msgText = (data.question || '').substring(0, 70);
+                    div.innerHTML = badge + '<span class="msg">[' + i + '/' + count + '] ' + msgText + (data.question && data.question.length > 70 ? '...' : '') + ' - ' + data.message + '</span>';
+                    lw.appendChild(div);
+                    lw.scrollTop = lw.scrollHeight;
+
+                    document.getElementById('progressText').textContent = i + ' / ' + count;
+                    document.getElementById('okCount').textContent = ok;
+                    document.getElementById('failCount').textContent = fail;
+                    document.getElementById('progressFill').style.width = ((i / count) * 100) + '%';
+                } catch (err) {
+                    fail++;
+                    const div = document.createElement('div');
+                    div.className = 'log-entry';
+                    div.innerHTML = '<span class="badge fail">FAIL</span><span class="msg">[' + i + '/' + count + '] Network error - ' + err.message + '</span>';
+                    lw.appendChild(div);
+                    lw.scrollTop = lw.scrollHeight;
+
+                    document.getElementById('progressText').textContent = i + ' / ' + count;
+                    document.getElementById('okCount').textContent = ok;
+                    document.getElementById('failCount').textContent = fail;
+                    document.getElementById('progressFill').style.width = ((i / count) * 100) + '%';
+                }
+
+                if (i < count && !cancelled) {
+                    await new Promise(r => setTimeout(r, 300));
+                }
+            }
+
+            if (!cancelled) {
+                document.getElementById('progressFill').style.width = '100%';
+            }
+
+            sendingActive = false;
+            btn.disabled = false;
+            btn.classList.remove('loading');
+            document.getElementById('cancelBtn').classList.remove('visible');
+            document.getElementById('username').disabled = false;
+            document.getElementById('count').disabled = false;
+        });
+    </script>
+</body>
+</html>
