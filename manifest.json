@@ -1,0 +1,17 @@
+{
+  "name": "NGL Spammer Pro",
+  "short_name": "NGL Spam",
+  "description": "Send unlimited anonymous messages to any NGL username",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "icons": [
+    {
+      "src": "logo.avif",
+      "sizes": "512x512",
+      "type": "image/avif",
+      "purpose": "any maskable"
+    }
+  ]
+}

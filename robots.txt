@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://qrtdrecovery.com/ngl/sitemap.xml
